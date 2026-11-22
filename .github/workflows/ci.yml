@@ -1,0 +1,26 @@
+name: CI - Compilar y ejecutar HolaMundo
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Descargar el código
+        uses: actions/checkout@v4
+
+      - name: Instalar Java 21
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+
+      - name: Compilar y ejecutar
+        run: |
+          cp mi-archivo.js HolaMundo.java
+          javac HolaMundo.java
+          java HolaMundo
